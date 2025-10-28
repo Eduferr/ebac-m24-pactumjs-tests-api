@@ -1,0 +1,12 @@
+# Ignorar dependências e arquivos de build
+node_modules/
+coverage/
+.DS_Store
+
+# Ignorar arquivos de ambiente
+env
+.env.local
+.env.*.local
+
+# Não ignorar o modelo de exemplo
+!.env.example

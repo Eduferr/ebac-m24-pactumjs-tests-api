@@ -1,0 +1,30 @@
+{
+  "name": "ebac-m24-pactumjs-tests-api",
+  "version": "1.0.0",
+  "description": "Atividade de Avaliação – Automação de Testes de API (Módulo 24) - Curso: Engenheiro de Qualidade de Software – EBAC",
+  "main": "index.js",
+  "scripts": {
+    "test:cat": "mocha ./teste/api/categorias/**/*.test.js",
+    "test:prod": "mocha ./teste/api/produtos/**/*.test.js",
+    "test": "npm run test:cat && npm run test:prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduferr/ebac-m24-pactumjs-tests-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Eduferr/ebac-m24-pactumjs-tests-api/issues"
+  },
+  "homepage": "https://github.com/Eduferr/ebac-m24-pactumjs-tests-api#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "mocha": "^11.7.4",
+    "pactum": "^3.8.0",
+    "pactum-flow-plugin": "^0.1.4",
+    "pactum-matchers": "^1.1.7"
+  }
+}
