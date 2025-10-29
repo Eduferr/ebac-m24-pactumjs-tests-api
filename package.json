@@ -6,7 +6,9 @@
   "scripts": {
     "test:cat": "mocha ./teste/api/categorias/**/*.test.js",
     "test:prod": "mocha ./teste/api/produtos/**/*.test.js",
-    "test": "npm run test:cat && npm run test:prod"
+    "test": "npm run test:cat && npm run test:prod",
+    "test:contratoFront": "mocha ./teste/api/categorias/contratoCategoria/consumidorAddCategoria.test.js",
+    "test:contratoApi": "mocha ./teste/api/categorias/contratoCategoria/provedorAddCategoria.test.js"
   },
   "repository": {
     "type": "git",
