@@ -14,12 +14,10 @@ function addFlowReporter() {
     reporter.add(pf.reporter);
 }
 
-
 before(async () => {
     addFlowReporter();
     await mock.start(4000);
 });
-
 
 after(async () => {
     await mock.stop();

@@ -1,18 +1,11 @@
-/// test.js
-const { spec, request } = require('pactum');
+const { spec} = require('pactum');
 const factory = require('../../helpers/data-factory')
+const { gerarToken } = require('../../helpers/hooks');
 
-request.setBaseUrl('http://lojaebac.ebaconline.art.br')
-
-let token
+// Token gerado via hooks.js
+let token;
 beforeEach(async () => {
-    token = await spec()
-        .post('/public/authUser')
-        .withJson({
-            "email": "admin@admin.com",
-            "password": "admin123"
-        })
-        .returns('data.token')
+    token = await gerarToken();
 });
 
 it('API - Deletar um produto', async () => {
@@ -25,7 +18,6 @@ it('API - Deletar um produto', async () => {
         .withHeaders("Authorization", token)
         .withJson(produtoFake)
         .returns('data._id');
-    //console.log('Id cadastrado:', produtoId);
 
     await spec()
         .delete(`/api/deleteProduct/${produtoId}`)

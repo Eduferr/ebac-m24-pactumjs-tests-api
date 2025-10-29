@@ -1,7 +1,8 @@
-const { reporter, flow, mock, handler, spec } = require('pactum');
+const { reporter, flow, mock } = require('pactum');
 const pf = require('pactum-flow-plugin');
 const { regex, like } = require('pactum-matchers');
 const factory = require('../../helpers/data-factory');
+const { gerarToken } = require('../../helpers/hooks');
 
 const randomPatch = Math.floor(Math.random() * 100)
 
@@ -15,30 +16,20 @@ function addFlowReporter() {
     reporter.add(pf.reporter);
 }
 
-// global before
 before(async () => {
     addFlowReporter();
     await mock.start(4000);
 });
 
-// global after
 after(async () => {
     await mock.stop();
     await reporter.end();
 });
 
-// variável para armazenar o token
+// Token gerado via hooks.js
 let token;
-
-// antes de cada teste, faz o login e guarda o token
 beforeEach(async () => {
-    token = await spec()
-        .post('http://lojaebac.ebaconline.art.br/public/authUser')
-        .withJson({
-            email: 'admin@admin.com',
-            password: 'admin123',
-        })
-        .returns('data.token');
+    token = await gerarToken();
 });
 
 it('API - Teste de Contrato - Adicionar produto', async () => {

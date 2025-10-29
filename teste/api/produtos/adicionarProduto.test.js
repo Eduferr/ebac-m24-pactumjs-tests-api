@@ -1,19 +1,12 @@
-/// test.js
-const { spec, request } = require('pactum');
+const { spec } = require('pactum');
 const factory = require('../../helpers/data-factory')
 const { regex, like } = require('pactum-matchers');
+const { gerarToken } = require('../../helpers/hooks');
 
-request.setBaseUrl('http://lojaebac.ebaconline.art.br')
-
-let token
+// Token gerado via hooks.js
+let token;
 beforeEach(async () => {
-    token = await spec()
-        .post('/public/authUser')
-        .withJson({
-            "email": "admin@admin.com",
-            "password": "admin123"
-        })
-        .returns('data.token')
+    token = await gerarToken();
 });
 
 it('API - Cadastrar novo Produto', async () => {

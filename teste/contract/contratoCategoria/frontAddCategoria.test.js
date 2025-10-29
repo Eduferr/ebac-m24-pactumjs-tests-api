@@ -14,12 +14,10 @@ function addFlowReporter() {
     reporter.add(pf.reporter);
 }
 
-
 before(async () => {
     addFlowReporter();
     await mock.start(4000);
 });
-
 
 after(async () => {
     await mock.stop();
@@ -34,8 +32,8 @@ handler.addInteractionHandler('Login Response', () => {
             method: 'POST',
             path: '/public/authUser',
             body: {
-                "email": "admin@admin.com",
-                "password": "admin123"
+                "email": "admin4@admin.com",
+                "password": "admin124"
             }
         },
         response: {
