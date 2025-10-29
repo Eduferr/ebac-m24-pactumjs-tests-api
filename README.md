@@ -100,6 +100,6 @@ http://localhost:8080
 **Autor:** Eduardo Ferreira  
 *Analista de qualidade de software*  
 🌐 [LinkedIn – Eduardo Ferreira](https://www.linkedin.com/in/edufgs/)   
-**Licença:** Projeto desenvolvido para fins educacionais e como prática em automação de testes, do módulo M24 da EBAC — *Automação de Testes de API com PactumJS*..
+**Licença:** Projeto desenvolvido para fins educacionais, como exercício prático em automação de testes, do módulo M24 da EBAC — Curso Engenheiro de qualidade de software.
 
 ---
