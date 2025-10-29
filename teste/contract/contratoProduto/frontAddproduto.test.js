@@ -1,13 +1,13 @@
 const { reporter, flow, handler, mock } = require('pactum');
 const pf = require('pactum-flow-plugin');
-const { like } = require('pactum-matchers');
+const { like, regex } = require('pactum-matchers');
 
 const randomPatch = Math.floor(Math.random() * 100)
 
 function addFlowReporter() {
     pf.config.url = 'http://localhost:8080';
-    pf.config.projectId = 'ebacM24-front-AddCategoria';
-    pf.config.projectName = 'EBAC M24 Front Adicionar Categoria';
+    pf.config.projectId = 'ebacM24-front-AddProduto';
+    pf.config.projectName = 'EBAC M24 Front Adicionar Produto';
     pf.config.version = `1.0.${randomPatch}`; // versão dinâmica
     pf.config.username = 'scanner';
     pf.config.password = 'scanner';
@@ -28,7 +28,7 @@ after(async () => {
 
 handler.addInteractionHandler('Login Response', () => {
     return {
-        provider: 'ebacM24-API-Login',
+        provider: 'ebacM24-API-AddProduto',
         flow: 'Login',
         request: {
             method: 'POST',
@@ -57,18 +57,18 @@ handler.addInteractionHandler('Login Response', () => {
     };
 });
 
-handler.addInteractionHandler('Add Category Response', () => {
+handler.addInteractionHandler('Add Product Response', () => {
     return {
-        provider: 'ebacM24-API-AddCategoria',
-        flow: 'Add Category',
+        provider: 'ebacM24-API-AddProduto',
+        flow: 'Add Product',
         request: {
             method: 'POST',
-            path: '/api/addCategory',
+            path: '/api/addProduct',
             headers: {
                 "Authorization": like("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...")
             },
             body: {
-                "name": like("Categoria Teste"),
+                "name": like("produto Teste"),
                 "photo": like("https://imagemfake.com/foto.png")
             }
         },
@@ -76,9 +76,9 @@ handler.addInteractionHandler('Add Category Response', () => {
             status: 200,
             body: {
                 "success": true,
-                "message": "category added",
+                "message": "product added",
                 "data": {
-                    "name": like("Categoria Teste"),
+                    "name": like("Produto Teste"),
                     "photo": like("https://imagemfake.com/foto.png")
                 }
             }
@@ -86,16 +86,16 @@ handler.addInteractionHandler('Add Category Response', () => {
     };
 });
 
-it('FRONT - Teste de Contrato - Adicionar categoria', async () => {
-    await flow("Add Category")
-        .useInteraction('Add Category Response')
-        .post('http://localhost:4000/api/addCategory')
+it('FRONT - Teste de Contrato - Adicionar Produto', async () => {
+    await flow("Add Product")
+        .useInteraction('Add Product Response')
+        .post('http://localhost:4000/api/addProduct')
         .withHeaders("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...")
         .withJson({
-            "name": "Categoria Teste",
+            "name": "Produto Teste",
             "photo": "https://imagemfake.com/foto.png"
         })
         .expectStatus(200)
         .expectJson('success', true)
-        .expectJson('message', 'category added');
+        .expectJson('message', 'product added');
 });
