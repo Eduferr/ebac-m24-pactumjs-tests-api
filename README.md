@@ -1,8 +1,8 @@
 # 🧪 EBAC M24 - PactumJS Tests API
-
+```bash
 Projeto de automação de testes de API desenvolvido em **Node.js**, utilizando **PactumJS** como framework principal, **Mocha** como test runner e bibliotecas auxiliares como **Faker.js**, **Pactum Flow Plugin** e **Pactum Matchers**.  
 O ambiente do **Pactum Flow** é executado via **Docker**, integrado a um banco **MongoDB**, para testes de contrato.
-
+```
 ---
 
 ## 📁 Estrutura do Projeto
