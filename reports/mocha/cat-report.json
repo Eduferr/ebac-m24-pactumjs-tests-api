@@ -1,0 +1,180 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-10-29T21:05:12.272Z",
+    "end": "2025-10-29T21:05:15.742Z",
+    "duration": 3470,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1eaa3de0-9b5a-4312-af3b-97d6550b8f6d",
+      "title": "",
+      "fullFile": "",
+      "file": "C:\\_Repositorio\\01_Projetos\\ebac-m24-pactumjs-tests-api\\teste\\api\\categorias\\adicionarCategoria.test.js",
+      "beforeHooks": [
+        {
+          "title": "\"before each\" hook in \"{root}\"",
+          "fullTitle": "\"before each\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 346,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "token = await gerarToken();",
+          "err": {},
+          "uuid": "390fb26e-0a1c-4fa0-9f5a-669656618dc2",
+          "parentUUID": "1eaa3de0-9b5a-4312-af3b-97d6550b8f6d",
+          "isHook": true,
+          "skipped": false
+        },
+        {
+          "title": "\"before each\" hook in \"{root}\"",
+          "fullTitle": "\"before each\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 302,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "token = await gerarToken();",
+          "err": {},
+          "uuid": "591a1bea-1f1c-4c90-9770-ceb611d4d8ba",
+          "parentUUID": "1eaa3de0-9b5a-4312-af3b-97d6550b8f6d",
+          "isHook": true,
+          "skipped": false
+        },
+        {
+          "title": "\"before each\" hook in \"{root}\"",
+          "fullTitle": "\"before each\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 378,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "token = await gerarToken();",
+          "err": {},
+          "uuid": "9154c5f6-c705-4abd-81e0-836c721960b9",
+          "parentUUID": "1eaa3de0-9b5a-4312-af3b-97d6550b8f6d",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [],
+      "tests": [
+        {
+          "title": "API - Cadastrar nova Categoria",
+          "fullTitle": "API - Cadastrar nova Categoria",
+          "timedOut": false,
+          "duration": 73,
+          "state": "passed",
+          "speed": "medium",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const categoriaFake = factory.categoria(); // gera dados dinâmicos\n    await spec()\n        .post('/api/addCategory') // endpoint para cadastrar categoria\n        .withHeaders(\"Authorization\", token)\n        .withJson(categoriaFake)\n        .expectStatus(200)\n        .expectJson('success', true)\n        .expectJson('message', 'category added')\n        .expectJsonMatch({\n            data: {\n                _id: regex(/^[a-f0-9]{24}$/),\n                name: like(\"Nome do produto\"),\n                photo: like(\"fotoproduto.png.com.br\")\n            }\n        })",
+          "err": {},
+          "uuid": "30d3c298-4cab-4593-9b6c-19610dacbb11",
+          "parentUUID": "1eaa3de0-9b5a-4312-af3b-97d6550b8f6d",
+          "isHook": false,
+          "skipped": false
+        },
+        {
+          "title": "API - Deletar uma categoria",
+          "fullTitle": "API - Deletar uma categoria",
+          "timedOut": false,
+          "duration": 100,
+          "state": "passed",
+          "speed": "slow",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const categoriaFake = factory.categoria();\n    // Para o teste ficar individualizado, executa um novo cadastro para retornar o Id\n    const categoriaId = await spec()\n        .post('/api/addCategory')\n        .withHeaders(\"Authorization\", token)\n        .withJson(categoriaFake)\n        .returns('data._id');\n    //console.log('Id cadastrado:', categoriaId);\n    await spec()\n        .delete(`/api/deleteCategory/${categoriaId}`)\n        .withHeaders(\"Authorization\", token)\n        .expectStatus(200)\n        .expectJson('success', true)\n        .expectJson('message', 'category deleted')",
+          "err": {},
+          "uuid": "c2049d07-1565-4a4d-8649-21f06696696d",
+          "parentUUID": "1eaa3de0-9b5a-4312-af3b-97d6550b8f6d",
+          "isHook": false,
+          "skipped": false
+        },
+        {
+          "title": "API - Editar categoria",
+          "fullTitle": "API - Editar categoria",
+          "timedOut": false,
+          "duration": 125,
+          "state": "passed",
+          "speed": "slow",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const categoriaFake = factory.categoria();\n    // Para o teste ficar individualizado, executa um novo cadastro para retornar o Id\n    const categoriaId = await spec()\n        .post('/api/addCategory')\n        .withHeaders(\"Authorization\", token)\n        .withJson(categoriaFake)\n        .returns('data._id');\n    //console.log('Id cadastrado:', categoriaId);\n    await spec()\n        .put(`/api/editCategory/${categoriaId}`)\n        .withHeaders(\"Authorization\", token)\n        .withJson({\n            \"name\": \"NomeEditado\",\n            \"photo\": \"fotoEditada.png.com.br\"\n        })\n        .expectStatus(200)\n        .expectJson('success', true)\n        .expectJson('message', 'category updated')",
+          "err": {},
+          "uuid": "a3bd3dd6-a1c9-4999-92bc-2adcd3bb91ea",
+          "parentUUID": "1eaa3de0-9b5a-4312-af3b-97d6550b8f6d",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [
+        "30d3c298-4cab-4593-9b6c-19610dacbb11",
+        "c2049d07-1565-4a4d-8649-21f06696696d",
+        "a3bd3dd6-a1c9-4999-92bc-2adcd3bb91ea"
+      ],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 298,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.4"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "cat-report",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/mocha",
+        "reportFilename": "cat-report",
+        "json": "true",
+        "html": "false",
+        "quiet": "true"
+      },
+      "version": "6.3.0"
+    }
+  }
+}

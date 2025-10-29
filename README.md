@@ -51,6 +51,7 @@ EBAC-M24-PACTUMJS-TESTS-API/
 | **Faker.js**           | Geração de dados fake e dinâmicos para os testes               |
 | **Docker**             | Utilizado para subir o ambiente do Pactum Flow e banco MongoDB |
 | **MongoDB**            | Banco de dados usado pelo Pactum Flow                          |
+| **Mochawesome**        | Geração de relatórios HTML e JSON dos testes                   |
 
 ---
 
@@ -66,6 +67,13 @@ EBAC-M24-PACTUMJS-TESTS-API/
 
 - **teste/contract/**
   - Testes de **contrato**, garantindo integridade de respostas da API.
+
+---
+
+## 📊 Geração de Relatórios – Mochawesome
+
+Os testes utilizam o Mochawesome para geração de relatórios em formato JSON e HTML.
+A configuração foi ajustada para consolidar todos os testes em um único relatório final.
 
 ---
 

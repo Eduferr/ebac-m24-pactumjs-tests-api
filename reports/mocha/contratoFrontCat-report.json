@@ -1,0 +1,125 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-10-29T21:05:29.198Z",
+    "end": "2025-10-29T21:05:29.625Z",
+    "duration": 427,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5b354b06-171d-42c5-925f-5f6ff5ce8ea1",
+      "title": "",
+      "fullFile": "",
+      "file": "C:\\_Repositorio\\01_Projetos\\ebac-m24-pactumjs-tests-api\\teste\\contract\\contratoCategoria\\frontAddCategoria.test.js",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook in \"{root}\"",
+          "fullTitle": "\"before all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 7,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "addFlowReporter();\nawait mock.start(4000);",
+          "err": {},
+          "uuid": "345ca7d2-fdda-4e2d-a9b3-aa88496ccaad",
+          "parentUUID": "5b354b06-171d-42c5-925f-5f6ff5ce8ea1",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook in \"{root}\"",
+          "fullTitle": "\"after all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 306,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "await mock.stop();\nawait reporter.end();",
+          "err": {},
+          "uuid": "cd11221c-c2e7-4cf6-9b89-2d83cd955e26",
+          "parentUUID": "5b354b06-171d-42c5-925f-5f6ff5ce8ea1",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [
+        {
+          "title": "FRONT - Teste de Contrato - Adicionar categoria",
+          "fullTitle": "FRONT - Teste de Contrato - Adicionar categoria",
+          "timedOut": false,
+          "duration": 93,
+          "state": "passed",
+          "speed": "slow",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "await flow(\"Add Category\")\n    .useInteraction('Add Category Response')\n    .post('http://localhost:4000/api/addCategory')\n    .withHeaders(\"Authorization\", \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\")\n    .withJson({\n        \"name\": \"Categoria Teste\",\n        \"photo\": \"https://imagemfake.com/foto.png\"\n    })\n    .expectStatus(200)\n    .expectJson('success', true)\n    .expectJson('message', 'category added');",
+          "err": {},
+          "uuid": "b0a2cad6-2bb2-4c55-9e36-e02a2619b749",
+          "parentUUID": "5b354b06-171d-42c5-925f-5f6ff5ce8ea1",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [
+        "b0a2cad6-2bb2-4c55-9e36-e02a2619b749"
+      ],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 93,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.4"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "contratoFrontCat-report",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/mocha",
+        "reportFilename": "contratoFrontCat-report",
+        "json": "true",
+        "html": "false",
+        "quiet": "true"
+      },
+      "version": "6.3.0"
+    }
+  }
+}

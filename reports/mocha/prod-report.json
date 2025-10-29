@@ -1,0 +1,180 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-10-29T21:05:18.710Z",
+    "end": "2025-10-29T21:05:22.774Z",
+    "duration": 4064,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "34dbebcd-c211-439a-bf21-efd81b7397a0",
+      "title": "",
+      "fullFile": "",
+      "file": "C:\\_Repositorio\\01_Projetos\\ebac-m24-pactumjs-tests-api\\teste\\api\\produtos\\adicionarProduto.test.js",
+      "beforeHooks": [
+        {
+          "title": "\"before each\" hook in \"{root}\"",
+          "fullTitle": "\"before each\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 585,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "token = await gerarToken();",
+          "err": {},
+          "uuid": "9c7d7e7d-31d6-47d9-a40f-c6a8d6513ffa",
+          "parentUUID": "34dbebcd-c211-439a-bf21-efd81b7397a0",
+          "isHook": true,
+          "skipped": false
+        },
+        {
+          "title": "\"before each\" hook in \"{root}\"",
+          "fullTitle": "\"before each\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 334,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "token = await gerarToken();",
+          "err": {},
+          "uuid": "779ce266-7660-4dbd-9ccb-33b7f423d28b",
+          "parentUUID": "34dbebcd-c211-439a-bf21-efd81b7397a0",
+          "isHook": true,
+          "skipped": false
+        },
+        {
+          "title": "\"before each\" hook in \"{root}\"",
+          "fullTitle": "\"before each\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 295,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "token = await gerarToken();",
+          "err": {},
+          "uuid": "f0bdfc26-a2cc-4f39-a9e8-565a2c334270",
+          "parentUUID": "34dbebcd-c211-439a-bf21-efd81b7397a0",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [],
+      "tests": [
+        {
+          "title": "API - Cadastrar novo Produto",
+          "fullTitle": "API - Cadastrar novo Produto",
+          "timedOut": false,
+          "duration": 188,
+          "state": "passed",
+          "speed": "slow",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const produtoFake = factory.produto(); // gera dados fake do produto\n    await spec()\n        .post('/api/addProduct')\n        .withHeaders(\"Authorization\", token)\n        .withJson(produtoFake)\n        .expectStatus(200)\n        .expectJson('success', true)\n        .expectJson('message', 'product added')\n        .expectJsonMatch({\n            data: {\n                _id: regex(/^[a-f0-9]{24}$/),\n                name: like(\"NomeProduto\"),\n                price: like(100)\n            }\n        })",
+          "err": {},
+          "uuid": "0d46e685-ba9b-4cf4-8674-87eab0b28066",
+          "parentUUID": "34dbebcd-c211-439a-bf21-efd81b7397a0",
+          "isHook": false,
+          "skipped": false
+        },
+        {
+          "title": "API - Deletar um produto",
+          "fullTitle": "API - Deletar um produto",
+          "timedOut": false,
+          "duration": 229,
+          "state": "passed",
+          "speed": "slow",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const produtoFake = factory.produto();\n    // Para o teste ficar individualizado, executa um novo cadastro para retornar o Id\n    const produtoId = await spec()\n        .post('/api/addProduct')\n        .withHeaders(\"Authorization\", token)\n        .withJson(produtoFake)\n        .returns('data._id');\n    await spec()\n        .delete(`/api/deleteProduct/${produtoId}`)\n        .withHeaders(\"Authorization\", token)\n        .expectStatus(200)\n        .expectJson('success', true)\n        .expectJson('message', 'product deleted');",
+          "err": {},
+          "uuid": "bc7f9bcf-cf8b-46c3-92c4-0ff70f370b48",
+          "parentUUID": "34dbebcd-c211-439a-bf21-efd81b7397a0",
+          "isHook": false,
+          "skipped": false
+        },
+        {
+          "title": "API - Editar produto",
+          "fullTitle": "API - Editar produto",
+          "timedOut": false,
+          "duration": 215,
+          "state": "passed",
+          "speed": "slow",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const produtoFake = factory.produto();\n    // Para o teste ficar individualizado, executa um novo cadastro para retornar o Id\n    const produtoId = await spec()\n        .post('/api/addProduct')\n        .withHeaders(\"Authorization\", token)\n        .withJson(produtoFake)\n        .returns('data._id');\n    await spec()\n        .put(`/api/editProduct/${produtoId}`)\n        .withHeaders(\"Authorization\", token)\n        .withJson({\n            \"name\": \"Texugo Black\",\n            \"price\": 100,\n            \"quantity\": 50\n        })\n        .expectStatus(200)\n        .expectJson('success', true)\n        .expectJson('message', 'product updated')",
+          "err": {},
+          "uuid": "706cf2cd-61e7-406e-8286-9558ddca4d79",
+          "parentUUID": "34dbebcd-c211-439a-bf21-efd81b7397a0",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [
+        "0d46e685-ba9b-4cf4-8674-87eab0b28066",
+        "bc7f9bcf-cf8b-46c3-92c4-0ff70f370b48",
+        "706cf2cd-61e7-406e-8286-9558ddca4d79"
+      ],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 632,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.4"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "prod-report",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/mocha",
+        "reportFilename": "prod-report",
+        "json": "true",
+        "html": "false",
+        "quiet": "true"
+      },
+      "version": "6.3.0"
+    }
+  }
+}

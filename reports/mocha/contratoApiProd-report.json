@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-10-29T21:05:33.524Z",
+    "end": "2025-10-29T21:05:34.536Z",
+    "duration": 1012,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "cdbc882c-72a0-4eb5-9177-6387d328cc77",
+      "title": "",
+      "fullFile": "",
+      "file": "C:\\_Repositorio\\01_Projetos\\ebac-m24-pactumjs-tests-api\\teste\\contract\\contratoProduto\\apiAddProduto.test.js",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook in \"{root}\"",
+          "fullTitle": "\"before all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 9,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "addFlowReporter();\nawait mock.start(4000);",
+          "err": {},
+          "uuid": "317633a5-fc24-44ef-91c1-f9cc63a1ba9f",
+          "parentUUID": "cdbc882c-72a0-4eb5-9177-6387d328cc77",
+          "isHook": true,
+          "skipped": false
+        },
+        {
+          "title": "\"before each\" hook in \"{root}\"",
+          "fullTitle": "\"before each\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 541,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "token = await gerarToken();",
+          "err": {},
+          "uuid": "60c3eece-c516-4041-8bed-1869092ad847",
+          "parentUUID": "cdbc882c-72a0-4eb5-9177-6387d328cc77",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook in \"{root}\"",
+          "fullTitle": "\"after all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 230,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "await mock.stop();\nawait reporter.end();",
+          "err": {},
+          "uuid": "fee6da48-f016-4f58-b706-0b3f3d199d09",
+          "parentUUID": "cdbc882c-72a0-4eb5-9177-6387d328cc77",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [
+        {
+          "title": "API - Teste de Contrato - Adicionar produto",
+          "fullTitle": "API - Teste de Contrato - Adicionar produto",
+          "timedOut": false,
+          "duration": 213,
+          "state": "passed",
+          "speed": "slow",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const produtoFake = factory.produto(); // gera dados dinâmicos\n    await flow('Cadastrar Produto')\n        .post('http://lojaebac.ebaconline.art.br/api/addProduct')\n        .withHeaders('Authorization', token)\n        .withJson(produtoFake)\n        .expectStatus(200)\n        .expectJson('success', true)\n        .expectJson('message', 'product added')\n        .expectJsonMatch({\n            data: {\n                _id: regex(/^[a-f0-9]{24}$/),\n                name: like(\"NomeProduto\"),\n                price: like(100)\n            }\n        })",
+          "err": {},
+          "uuid": "2d820c49-3073-4842-8c45-d3f70bd29e18",
+          "parentUUID": "cdbc882c-72a0-4eb5-9177-6387d328cc77",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [
+        "2d820c49-3073-4842-8c45-d3f70bd29e18"
+      ],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 213,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.4"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "contratoApiProd-report",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/mocha",
+        "reportFilename": "contratoApiProd-report",
+        "json": "true",
+        "html": "false",
+        "quiet": "true"
+      },
+      "version": "6.3.0"
+    }
+  }
+}

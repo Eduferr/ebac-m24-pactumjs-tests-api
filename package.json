@@ -3,18 +3,27 @@
   "version": "1.0.0",
   "description": "Atividade de Avaliação – Automação de Testes de API (Módulo 24) - Curso: Engenheiro de Qualidade de Software – EBAC",
   "main": "index.js",
-  "scripts": {
-    "test:full": "npm run test:api && npm run test:contratoCategoria && npm run test:contratoProduto",
-    "test:api": "npm run test:cat && npm run test:prod",
-            "test:cat": "mocha ./teste/api/categorias/**/*.test.js",
-            "test:prod": "mocha ./teste/api/produtos/**/*.test.js",
-    "test:contratoCategoria": "npm run test:contratoApiCat && npm run test:contratoFrontCat",
-            "test:contratoApiCat": "mocha ./teste/contract/contratoCategoria/apiAddCategoria.test.js",
-            "test:contratoFrontCat": "mocha ./teste/contract/contratoCategoria/frontAddCategoria.test.js",
-    "test:contratoProduto": "npm run test:contratoApiProd && npm run test:contratoFrontProd",
-            "test:contratoApiProd": "mocha ./teste/contract/contratoProduto/apiAddProduto.test.js",
-            "test:contratoFrontProd": "mocha ./teste/contract/contratoProduto/frontAddProduto.test.js"
-  },
+  "type": "commonjs",
+"scripts": {
+  "clean:reports": "rimraf reports/mocha",
+
+  "test:full": "npm run clean:reports && npm run test:api && npm run test:contratoCategoria && npm run test:contratoProduto && npm run report:merge",
+
+  "test:api": "npm run test:cat && npm run test:prod",
+
+  "test:cat": "mocha ./teste/api/categorias/**/*.test.js --reporter mochawesome --reporter-options reportDir=reports/mocha,reportFilename=cat-report,json=true,html=false,quiet=true",
+  "test:prod": "mocha ./teste/api/produtos/**/*.test.js --reporter mochawesome --reporter-options reportDir=reports/mocha,reportFilename=prod-report,json=true,html=false,quiet=true",
+
+  "test:contratoCategoria": "npm run test:contratoApiCat && npm run test:contratoFrontCat",
+  "test:contratoApiCat": "mocha ./teste/contract/contratoCategoria/apiAddCategoria.test.js --reporter mochawesome --reporter-options reportDir=reports/mocha,reportFilename=contratoApiCat-report,json=true,html=false,quiet=true",
+  "test:contratoFrontCat": "mocha ./teste/contract/contratoCategoria/frontAddCategoria.test.js --reporter mochawesome --reporter-options reportDir=reports/mocha,reportFilename=contratoFrontCat-report,json=true,html=false,quiet=true",
+
+  "test:contratoProduto": "npm run test:contratoApiProd && npm run test:contratoFrontProd",
+  "test:contratoApiProd": "mocha ./teste/contract/contratoProduto/apiAddProduto.test.js --reporter mochawesome --reporter-options reportDir=reports/mocha,reportFilename=contratoApiProd-report,json=true,html=false,quiet=true",
+  "test:contratoFrontProd": "mocha ./teste/contract/contratoProduto/frontAddProduto.test.js --reporter mochawesome --reporter-options reportDir=reports/mocha,reportFilename=contratoFrontProd-report,json=true,html=false,quiet=true",
+
+  "report:merge": "rimraf reports/mocha/merged.json && mochawesome-merge reports/mocha/*-report.json > reports/mocha/merged.json && marge reports/mocha/merged.json --reportDir reports/mocha --reportFilename report"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Eduferr/ebac-m24-pactumjs-tests-api.git"
@@ -22,7 +31,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Eduferr/ebac-m24-pactumjs-tests-api/issues"
   },
@@ -30,8 +38,12 @@
   "devDependencies": {
     "@faker-js/faker": "^10.1.0",
     "mocha": "^11.7.4",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.3.0",
     "pactum": "^3.8.0",
     "pactum-flow-plugin": "^0.1.4",
-    "pactum-matchers": "^1.1.7"
+    "pactum-matchers": "^1.1.7",
+    "rimraf": "^5.0.10"
   }
 }
