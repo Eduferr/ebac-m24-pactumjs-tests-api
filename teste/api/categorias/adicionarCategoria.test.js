@@ -1,6 +1,6 @@
 /// test.js
 const { spec, request } = require('pactum');
-const { eachLike, like } = require('pactum-matchers');
+const { regex, like } = require('pactum-matchers');
 const factory = require('../../helpers/data-factory')
 
 request.setBaseUrl('http://lojaebac.ebaconline.art.br')
@@ -18,7 +18,7 @@ beforeEach(async () => {
 
 it('API - Cadastrar nova Categoria', async () => {
 
-    const categoriaFake = factory.categoria(); // gera name e photo dinâmicos
+    const categoriaFake = factory.categoria(); // gera dados dinâmicos
 
     await spec()
         .post('/api/addCategory') // endpoint para cadastrar categoria
@@ -26,5 +26,13 @@ it('API - Cadastrar nova Categoria', async () => {
         .withJson(categoriaFake)
         .expectStatus(200)
         .expectJson('success', true)
+        .expectJson('message', 'category added')
+        .expectJsonMatch({
+            data: {
+                _id: regex(/^[a-f0-9]{24}$/),
+                name: like("Nome do produto"),
+                photo: like("fotoproduto.png.com.br")
+            }
+        })
 
 });

@@ -17,8 +17,8 @@ module.exports = {
       categories: "67ec3e678bb5e25d3b2741f4",     // ID fixo (pode ser dinâmico futuramente)
       description: faker.commerce.productDescription(), // descrição realista
       photos: faker.image.urlPicsumPhotos(),      // link aleatório de imagem
-      popular: faker.datatype.boolean(),
-      visible: faker.datatype.boolean(),
+      popular: true,
+      visible: true,
       location: faker.location.city(),            // cidade aleatória
       additionalDetails: [],
       specialPrice: faker.number.float({ min: 5, max: 150, precision: 0.01 })

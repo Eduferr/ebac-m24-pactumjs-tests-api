@@ -1,7 +1,7 @@
 /// test.js
 const { spec, request } = require('pactum');
-const { eachLike, like } = require('pactum-matchers');
 const factory = require('../../helpers/data-factory')
+const { regex, like } = require('pactum-matchers');
 
 request.setBaseUrl('http://lojaebac.ebaconline.art.br')
 
@@ -16,14 +16,22 @@ beforeEach(async () => {
         .returns('data.token')
 });
 
-it.only('API - Cadastrar novo Produto', async () => {
+it('API - Cadastrar novo Produto', async () => {
 
-    const produtoFake = factory.produto(); // gera informações fake do
+    const produtoFake = factory.produto(); // gera dados fake do produto
 
     await spec()
-        .post('/api/addCategory') // endpoint para cadastrar (ajuste se for /api/addProduct)
+        .post('/api/addProduct')
         .withHeaders("Authorization", token)
         .withJson(produtoFake)
         .expectStatus(200)
-        .expectJson('success', true);
+        .expectJson('success', true)
+        .expectJson('message', 'product added')
+        .expectJsonMatch({
+            data: {
+                _id: regex(/^[a-f0-9]{24}$/),
+                name: like("NomeProduto"),
+                price: like(100)
+            }
+        })
 });
