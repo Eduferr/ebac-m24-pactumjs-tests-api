@@ -59,7 +59,7 @@ EBAC-M24-PACTUMJS-TESTS-API/
 - **helpers/**
   - `config.js` → Define URL base e credenciais de autenticação.
   - `data-factory.js` → Gera dados dinâmicos com Faker.js.
-  - `hooks.js` → Configura URL base e função para gerar token JWT.
+  - `hooks.js` → Para efetuar o login e gerar token de autorização.
 
 - **teste/api/**
   - Testes funcionais de **categorias** e **produtos**.
@@ -69,36 +69,11 @@ EBAC-M24-PACTUMJS-TESTS-API/
 
 ---
 
-## 🔐 Autenticação Global
-  
-- A autenticação é configurada no arquivo `helpers/hooks.js`, que gera automaticamente o token de acesso antes de cada teste.
-
-```js
-const { spec, request } = require('pactum');
-const config = require('./config');
-
-request.setBaseUrl(config.baseUrl);
-
-async function gerarToken() {
-  const token = await spec()
-    .post('/public/authUser')
-    .withJson({
-      email: config.credencial.email,
-      password: config.credencial.password
-    })
-    .returns('data.token');
-  return token;
-}
-
-module.exports = { gerarToken };
-```
----
-
 ## 🐳 Ambiente Docker - Pactum Flow + MongoDB
 
 O **Docker Compose** é utilizado para subir o servidor do **Pactum Flow** e o **MongoDB** localmente.
 
-### 🚀 Subindo o ambiente
+### 🚀 Para subir o ambiente
 ```bash
 docker-compose up -d
 ```
@@ -111,12 +86,12 @@ http://localhost:8080
 
 ## ✅ Boas Práticas Aplicadas
 
-- Reutilização de código via **hooks globais**
-- Separação clara entre **testes de API** e **testes de contrato**
-- Geração de **dados dinâmicos** com Faker.js
-- **Monitoramento visual** de fluxos com Pactum Flow
-- **Ambiente controlado** com Docker + Mongo
-- Estrutura modular e escalável
+1. Reutilização de código via **hooks globais**
+2. Separação clara entre **testes de API** e **testes de contrato**
+3. Geração de **dados dinâmicos** com Faker.js
+4. **Monitoramento visual** de fluxos com Pactum Flow
+5. **Ambiente controlado** com Docker + Mongo
+6. Estrutura modular e escalável
 
 ---
 
@@ -125,6 +100,6 @@ http://localhost:8080
 **Autor:** Eduardo Ferreira  
 *Analista de qualidade de software*  
 🌐 [LinkedIn – Eduardo Ferreira](https://www.linkedin.com/in/edufgs/)   
-**Licença:** Projeto desenvolvido como parte do módulo M24 da EBAC — *Automação de Testes de API com PactumJS*..
+**Licença:** Projeto desenvolvido para fins educacionais e como prática em automação de testes, do módulo M24 da EBAC — *Automação de Testes de API com PactumJS*..
 
 ---
